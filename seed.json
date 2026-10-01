@@ -1,0 +1,547 @@
+{
+  "disclosure": "Synthetic portfolio fixtures. No SAP connection. One material per purchase order. References and policy are fictional.",
+  "suppliers": [
+    {
+      "id": "SUP-01",
+      "name": "Northstar Components",
+      "country": "Thailand"
+    },
+    {
+      "id": "SUP-02",
+      "name": "Harbor Office Supply",
+      "country": "Thailand"
+    },
+    {
+      "id": "SUP-03",
+      "name": "Cedar Packaging",
+      "country": "Thailand"
+    }
+  ],
+  "purchase_orders": [
+    {
+      "id": "PO-001",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-002",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-003",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-004",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-005",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-006",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-007",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-008",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-009",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-010",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-011",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-012",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-013",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-014",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-015",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-016",
+      "supplier_id": "SUP-01",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-017",
+      "supplier_id": "SUP-02",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    },
+    {
+      "id": "PO-018",
+      "supplier_id": "SUP-03",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB"
+    }
+  ],
+  "goods_receipts": [
+    {
+      "id": "GR-001-1",
+      "po_id": "PO-001",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-002-1",
+      "po_id": "PO-002",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-003-1",
+      "po_id": "PO-003",
+      "material_id": "MAT-01",
+      "quantity": 6
+    },
+    {
+      "id": "GR-004-1",
+      "po_id": "PO-004",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-005-1",
+      "po_id": "PO-005",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-006-1",
+      "po_id": "PO-006",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-007-1",
+      "po_id": "PO-007",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-009-1",
+      "po_id": "PO-009",
+      "material_id": "MAT-01",
+      "quantity": 5
+    },
+    {
+      "id": "GR-010-1",
+      "po_id": "PO-010",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-011-1",
+      "po_id": "PO-011",
+      "material_id": "MAT-01",
+      "quantity": 4
+    },
+    {
+      "id": "GR-011-2",
+      "po_id": "PO-011",
+      "material_id": "MAT-01",
+      "quantity": 6
+    },
+    {
+      "id": "GR-012-1",
+      "po_id": "PO-012",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-013-1",
+      "po_id": "PO-013",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-014-1",
+      "po_id": "PO-014",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-015-1",
+      "po_id": "PO-015",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-016-1",
+      "po_id": "PO-016",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-017-1",
+      "po_id": "PO-017",
+      "material_id": "MAT-01",
+      "quantity": 10
+    },
+    {
+      "id": "GR-018-1",
+      "po_id": "PO-018",
+      "material_id": "MAT-01",
+      "quantity": 10
+    }
+  ],
+  "invoices": [
+    {
+      "id": "INV-001",
+      "supplier_reference": "NS-001",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-001",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Clean order"
+    },
+    {
+      "id": "INV-002",
+      "supplier_reference": "NS-002",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-002",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "108.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Price above tolerance"
+    },
+    {
+      "id": "INV-003",
+      "supplier_reference": "NS-003",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-003",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Partially received order"
+    },
+    {
+      "id": "INV-004",
+      "supplier_reference": "NS-004",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-404",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Purchase order missing"
+    },
+    {
+      "id": "INV-005",
+      "supplier_reference": "NS-005",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-005",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "USD",
+      "date": "2026-10-01",
+      "scenario": "Currency differs"
+    },
+    {
+      "id": "INV-006",
+      "supplier_reference": "NS-006",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-006",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Supplier differs"
+    },
+    {
+      "id": "INV-007",
+      "supplier_reference": "NS-007",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-007",
+      "material_id": "MAT-01",
+      "quantity": 12,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Quantity above order"
+    },
+    {
+      "id": "INV-008",
+      "supplier_reference": "NS-008",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-008",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "No goods receipt"
+    },
+    {
+      "id": "INV-009",
+      "supplier_reference": "NS-009",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-009",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "115.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Price and receipt exceptions"
+    },
+    {
+      "id": "INV-010",
+      "supplier_reference": "NS-010",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-010",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "102.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Price at tolerance boundary"
+    },
+    {
+      "id": "INV-011",
+      "supplier_reference": "NS-011",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-011",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Split goods receipts"
+    },
+    {
+      "id": "INV-012",
+      "supplier_reference": "NS-012",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-012",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Clean invoice with supplier reference"
+    },
+    {
+      "id": "INV-013",
+      "supplier_reference": "  ns-012  ",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-012",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Duplicate supplier reference"
+    },
+    {
+      "id": "INV-014",
+      "supplier_reference": "NS-014",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-014",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Clean order"
+    },
+    {
+      "id": "INV-015",
+      "supplier_reference": "NS-015",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-015",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "102.01",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Price just above tolerance"
+    },
+    {
+      "id": "INV-016",
+      "supplier_reference": "NS-016",
+      "supplier_id": "SUP-01",
+      "po_id": "PO-016",
+      "material_id": "MAT-01",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Clean order"
+    },
+    {
+      "id": "INV-017",
+      "supplier_reference": "NS-017",
+      "supplier_id": "SUP-02",
+      "po_id": "PO-017",
+      "material_id": "MAT-OTHER",
+      "quantity": 10,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Unknown material"
+    },
+    {
+      "id": "INV-018",
+      "supplier_reference": "NS-018",
+      "supplier_id": "SUP-03",
+      "po_id": "PO-018",
+      "material_id": "MAT-01",
+      "quantity": 0,
+      "unit_price": "100.00",
+      "currency": "THB",
+      "date": "2026-10-01",
+      "scenario": "Invalid invoice quantity"
+    }
+  ],
+  "policy": {
+    "id": "POL-01",
+    "name": "Fictional AP matching policy",
+    "price_tolerance_percent": "2.00",
+    "currency": "THB",
+    "rule": "Hold exceptions for review. Matching invoices still require a human review. No payments or postings are made."
+  },
+  "expected": {
+    "INV-001": [],
+    "INV-002": [
+      "PRICE_MISMATCH"
+    ],
+    "INV-003": [
+      "RECEIPT_SHORTFALL"
+    ],
+    "INV-004": [
+      "MISSING_PO"
+    ],
+    "INV-005": [
+      "CURRENCY_MISMATCH"
+    ],
+    "INV-006": [
+      "SUPPLIER_MISMATCH"
+    ],
+    "INV-007": [
+      "QUANTITY_MISMATCH",
+      "RECEIPT_SHORTFALL"
+    ],
+    "INV-008": [
+      "MISSING_RECEIPT"
+    ],
+    "INV-009": [
+      "PRICE_MISMATCH",
+      "RECEIPT_SHORTFALL"
+    ],
+    "INV-010": [],
+    "INV-011": [],
+    "INV-012": [],
+    "INV-013": [
+      "DUPLICATE_INVOICE"
+    ],
+    "INV-014": [],
+    "INV-015": [
+      "PRICE_MISMATCH"
+    ],
+    "INV-016": [],
+    "INV-017": [
+      "MATERIAL_MISMATCH"
+    ],
+    "INV-018": [
+      "INVALID_DATA"
+    ]
+  }
+}
