@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.000
+The invoice bills 108 THB per unit. The purchase order says 100 THB. Local AI is selected.
+
+00:00:08.000 --> 00:00:16.000
+The model retrieves invoice context, matching results, policy and graph evidence. Actual run time was 53.82 seconds.
+
+00:00:16.000 --> 00:00:23.000
+Qwen identifies the price mismatch and the need for human review. Its proposed action is hold for review.
+
+00:00:23.000 --> 00:00:31.000
+The reviewer uses the prepared fictional evidence to set the unit price to 100 THB and records the reason.
+
+00:00:31.000 --> 00:00:39.000
+The correction is saved, but approval remains locked until the deterministic checks run against the new values.
+
+00:00:39.000 --> 00:00:47.000
+Matching checks pass. The reviewer adds a decision note before recording approval. The AI does not approve.
+
+00:00:47.000 --> 00:00:54.000
+The invoice, order and delivery now agree. This is a local synthetic decision, with no payment or SAP posting.
+
+00:00:54.000 --> 00:01:02.000
+The history records the investigation, price correction, successful recheck and human approval.
+
+00:01:02.000 --> 00:01:10.000
+The app identifies the old recommendation as out of date after a correction. Fresh matching checks govern approval.

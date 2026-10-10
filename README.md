@@ -56,3 +56,9 @@ Describe this as an independent synthetic-data project. Demonstrated skills incl
 ## Local AI edition
 
 The resume also describes a separate Python and SQLite application with Qwen3 4B through Ollama. That local application uses model-selected read-only evidence tools and human-controlled corrections and approval. This public GitHub Pages demo remains scripted and requires no model or API key.
+
+## Recorded local AI walkthrough
+
+[Watch the local Qwen3 demonstration](./local-ai.html). The 70-second captioned video uses screenshots from an actual Qwen3 4B investigation on 10 October 2026. Pauses are edited out and there is no audio. The local run took 53.82 seconds and proposed holding synthetic INV-002 for review. The reviewer then corrected its price, rechecked the documents and recorded a local approval in an isolated practice database. The linked JSON contains the original model proposal and retrieved synthetic evidence.
+
+The public interactive application is still scripted. Neither the video nor this website connects to the local Mac or runs Qwen for visitors.

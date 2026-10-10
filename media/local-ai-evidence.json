@@ -1,0 +1,694 @@
+{
+  "description": "Actual synthetic local Qwen3 run captured for the resume walkthrough. The proposal precedes the human correction and approval.",
+  "result": {
+    "summary": "INV-002 has a price mismatch with PO-002 (108.00 vs 100.00 THB) exceeding 2% tolerance. Policy requires human review for exceptions.",
+    "proposed_action": "hold_for_review",
+    "draft": "Price mismatch detected: Invoice unit price 108.00 THB exceeds PO-002's 100.00 THB by 8.00 THB (8% difference). Policy tolerance is 2%. This invoice requires human review before approval.",
+    "evidence_ids": [
+      "INV-002",
+      "PO-002",
+      "POL-01"
+    ],
+    "limitations": "This is synthetic data. Human review is required. No approval, payment, or SAP actions are made.",
+    "mode": "local_ai",
+    "model": "qwen3:4b",
+    "label": "Live local AI investigation. Human review required.",
+    "trace": [
+      {
+        "tool": "get_invoice_context",
+        "summary": "Selected by the local model. Read-only evidence retrieved.",
+        "result": {
+          "invoice": {
+            "id": "INV-002",
+            "supplier_reference": "NS-002",
+            "supplier_id": "SUP-02",
+            "po_id": "PO-002",
+            "material_id": "MAT-01",
+            "quantity": 10,
+            "unit_price": "108.00",
+            "currency": "THB",
+            "date": "2026-10-01"
+          },
+          "supplier": {
+            "id": "SUP-02",
+            "name": "Harbor Office Supply",
+            "country": "Thailand"
+          },
+          "purchase_order": {
+            "id": "PO-002",
+            "supplier_id": "SUP-02",
+            "material_id": "MAT-01",
+            "quantity": 10,
+            "unit_price": "100.00",
+            "currency": "THB"
+          },
+          "goods_receipts": [
+            {
+              "id": "GR-002-1",
+              "po_id": "PO-002",
+              "material_id": "MAT-01",
+              "quantity": 10
+            }
+          ]
+        }
+      },
+      {
+        "tool": "check_invoice",
+        "summary": "Selected by the local model. Read-only evidence retrieved.",
+        "result": {
+          "invoice_id": "INV-002",
+          "match": false,
+          "amount": "1080.00",
+          "currency": "THB",
+          "findings": [
+            {
+              "code": "PRICE_MISMATCH",
+              "message": "Unit price 108.00 THB differs from ordered price 100.00 beyond the policy tolerance.",
+              "evidence_ids": [
+                "INV-002",
+                "PO-002",
+                "POL-01"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tool": "get_matching_policy",
+        "summary": "Selected by the local model. Read-only evidence retrieved.",
+        "result": {
+          "id": "POL-01",
+          "name": "Fictional AP matching policy",
+          "price_tolerance_percent": "2.00",
+          "currency": "THB",
+          "rule": "Hold exceptions for review. Matching invoices still require a human review. No payments or postings are made."
+        }
+      },
+      {
+        "tool": "query_knowledge_graph",
+        "summary": "Selected by the local model. Read-only evidence retrieved.",
+        "result": {
+          "root": "INV-002",
+          "nodes": [
+            {
+              "id": "GR-002-1",
+              "type": "Goods receipt",
+              "label": "GR-002-1",
+              "record": {
+                "id": "GR-002-1",
+                "po_id": "PO-002",
+                "material_id": "MAT-01",
+                "quantity": 10
+              }
+            },
+            {
+              "id": "INV-001",
+              "type": "Invoice",
+              "label": "INV-001",
+              "record": {
+                "id": "INV-001",
+                "supplier_reference": "NS-001",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-001",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-002",
+              "type": "Invoice",
+              "label": "INV-002",
+              "record": {
+                "id": "INV-002",
+                "supplier_reference": "NS-002",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-002",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "108.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-003",
+              "type": "Invoice",
+              "label": "INV-003",
+              "record": {
+                "id": "INV-003",
+                "supplier_reference": "NS-003",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-003",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-004",
+              "type": "Invoice",
+              "label": "INV-004",
+              "record": {
+                "id": "INV-004",
+                "supplier_reference": "NS-004",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-404",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-005",
+              "type": "Invoice",
+              "label": "INV-005",
+              "record": {
+                "id": "INV-005",
+                "supplier_reference": "NS-005",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-005",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "USD",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-006",
+              "type": "Invoice",
+              "label": "INV-006",
+              "record": {
+                "id": "INV-006",
+                "supplier_reference": "NS-006",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-006",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-007",
+              "type": "Invoice",
+              "label": "INV-007",
+              "record": {
+                "id": "INV-007",
+                "supplier_reference": "NS-007",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-007",
+                "material_id": "MAT-01",
+                "quantity": 12,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-008",
+              "type": "Invoice",
+              "label": "INV-008",
+              "record": {
+                "id": "INV-008",
+                "supplier_reference": "NS-008",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-008",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-009",
+              "type": "Invoice",
+              "label": "INV-009",
+              "record": {
+                "id": "INV-009",
+                "supplier_reference": "NS-009",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-009",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "115.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-010",
+              "type": "Invoice",
+              "label": "INV-010",
+              "record": {
+                "id": "INV-010",
+                "supplier_reference": "NS-010",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-010",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "102.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-011",
+              "type": "Invoice",
+              "label": "INV-011",
+              "record": {
+                "id": "INV-011",
+                "supplier_reference": "NS-011",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-011",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-012",
+              "type": "Invoice",
+              "label": "INV-012",
+              "record": {
+                "id": "INV-012",
+                "supplier_reference": "NS-012",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-012",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-013",
+              "type": "Invoice",
+              "label": "INV-013",
+              "record": {
+                "id": "INV-013",
+                "supplier_reference": "  ns-012  ",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-012",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-014",
+              "type": "Invoice",
+              "label": "INV-014",
+              "record": {
+                "id": "INV-014",
+                "supplier_reference": "NS-014",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-014",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-015",
+              "type": "Invoice",
+              "label": "INV-015",
+              "record": {
+                "id": "INV-015",
+                "supplier_reference": "NS-015",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-015",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "102.01",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-016",
+              "type": "Invoice",
+              "label": "INV-016",
+              "record": {
+                "id": "INV-016",
+                "supplier_reference": "NS-016",
+                "supplier_id": "SUP-01",
+                "po_id": "PO-016",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-017",
+              "type": "Invoice",
+              "label": "INV-017",
+              "record": {
+                "id": "INV-017",
+                "supplier_reference": "NS-017",
+                "supplier_id": "SUP-02",
+                "po_id": "PO-017",
+                "material_id": "MAT-OTHER",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "INV-018",
+              "type": "Invoice",
+              "label": "INV-018",
+              "record": {
+                "id": "INV-018",
+                "supplier_reference": "NS-018",
+                "supplier_id": "SUP-03",
+                "po_id": "PO-018",
+                "material_id": "MAT-01",
+                "quantity": 0,
+                "unit_price": "100.00",
+                "currency": "THB",
+                "date": "2026-10-01"
+              }
+            },
+            {
+              "id": "PO-002",
+              "type": "Purchase order",
+              "label": "PO-002",
+              "record": {
+                "id": "PO-002",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "PO-005",
+              "type": "Purchase order",
+              "label": "PO-005",
+              "record": {
+                "id": "PO-005",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "PO-008",
+              "type": "Purchase order",
+              "label": "PO-008",
+              "record": {
+                "id": "PO-008",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "PO-011",
+              "type": "Purchase order",
+              "label": "PO-011",
+              "record": {
+                "id": "PO-011",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "PO-014",
+              "type": "Purchase order",
+              "label": "PO-014",
+              "record": {
+                "id": "PO-014",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "PO-017",
+              "type": "Purchase order",
+              "label": "PO-017",
+              "record": {
+                "id": "PO-017",
+                "supplier_id": "SUP-02",
+                "material_id": "MAT-01",
+                "quantity": 10,
+                "unit_price": "100.00",
+                "currency": "THB"
+              }
+            },
+            {
+              "id": "POL-01",
+              "type": "Policy",
+              "label": "Fictional AP matching policy",
+              "record": {
+                "id": "POL-01",
+                "name": "Fictional AP matching policy",
+                "price_tolerance_percent": "2.00",
+                "currency": "THB",
+                "rule": "Hold exceptions for review. Matching invoices still require a human review. No payments or postings are made."
+              }
+            },
+            {
+              "id": "SUP-02",
+              "type": "Supplier",
+              "label": "Harbor Office Supply",
+              "record": {
+                "id": "SUP-02",
+                "name": "Harbor Office Supply",
+                "country": "Thailand"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "PO-002",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "PO-005",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "PO-008",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "PO-011",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "PO-014",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "PO-017",
+              "relation": "ordered_from",
+              "target": "SUP-02"
+            },
+            {
+              "source": "GR-002-1",
+              "relation": "receives_against",
+              "target": "PO-002"
+            },
+            {
+              "source": "INV-001",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-002",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-002",
+              "relation": "references",
+              "target": "PO-002"
+            },
+            {
+              "source": "INV-002",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-003",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-004",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-005",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-005",
+              "relation": "references",
+              "target": "PO-005"
+            },
+            {
+              "source": "INV-005",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-006",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-007",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-008",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-008",
+              "relation": "references",
+              "target": "PO-008"
+            },
+            {
+              "source": "INV-008",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-009",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-010",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-011",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-011",
+              "relation": "references",
+              "target": "PO-011"
+            },
+            {
+              "source": "INV-011",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-012",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-013",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-013",
+              "relation": "duplicates_reference",
+              "target": "INV-012"
+            },
+            {
+              "source": "INV-014",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-014",
+              "relation": "references",
+              "target": "PO-014"
+            },
+            {
+              "source": "INV-014",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-015",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-016",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-017",
+              "relation": "billed_by",
+              "target": "SUP-02"
+            },
+            {
+              "source": "INV-017",
+              "relation": "references",
+              "target": "PO-017"
+            },
+            {
+              "source": "INV-017",
+              "relation": "governed_by",
+              "target": "POL-01"
+            },
+            {
+              "source": "INV-018",
+              "relation": "governed_by",
+              "target": "POL-01"
+            }
+          ]
+        }
+      }
+    ],
+    "elapsed_seconds": 53.82,
+    "verified_at": "2026-10-10T09:39:00.911781+00:00",
+    "validation_limits": "Action and citation IDs checked in code. Narrative still requires human review.",
+    "checked_at": "2026-10-10T09:39:00+00:00",
+    "revision": 0
+  }
+}

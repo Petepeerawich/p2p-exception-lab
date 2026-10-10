@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Qwen3 demonstration | P2P Lab</title>
+<meta name="description" content="Watch a real local Qwen3 investigation of a fictional invoice, then try the separate scripted browser demo.">
+<link rel="icon" href="data:,">
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,sans-serif;color:#173c43;background:#f3f7f5}*{box-sizing:border-box}body{margin:0}main{max-width:1080px;margin:auto;padding:32px 24px 64px}nav{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:48px}a{color:#116b59;text-underline-offset:4px}nav>a:first-child{font-weight:850;font-size:22px;text-decoration:none}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.12em;color:#41725e}h1{font-size:clamp(30px,5vw,50px);line-height:1.1;max-width:850px;margin:14px 0 20px}p{line-height:1.65;max-width:850px}.lead{font-size:19px;color:#486269}.badge{display:inline-block;background:#dceee5;border-radius:7px;padding:8px 12px;font-size:13px;font-weight:650}.watch{margin:28px 0;padding:20px;background:#fff;border:1px solid #cbded4;border-radius:18px}video{display:block;width:100%;max-height:78vh;background:#102b32;border-radius:10px}h2{font-size:24px;margin-top:32px}.note{font-size:14px;color:#536e73}.actions{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}.button{display:inline-block;border:1px solid #116b59;border-radius:9px;padding:13px 18px;font-weight:700;text-decoration:none}.primary{background:#116b59;color:white}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:white}th,td{padding:16px;text-align:left;border:1px solid #d6e2dc;vertical-align:top;line-height:1.5}th{background:#e4efe9}li{line-height:1.6;margin:10px 0}footer{border-top:1px solid #d6e2dc;margin-top:36px;padding-top:20px;font-size:13px;color:#536e73}details{margin:20px 0}summary{cursor:pointer;font-weight:650}video::cue{background:rgba(10,30,35,.94);color:white;font-size:18px}
+</style>
+</head>
+<body><main>
+<nav><a href="./">P2P LAB</a><a href="./">Try the scripted browser demo</a></nav>
+<p class="eyebrow">INDEPENDENT PORTFOLIO PROJECT</p>
+<h1>Procure-to-Pay Assistant with Local Qwen3</h1>
+<p class="lead">A local AI agent retrieves invoice evidence and proposes a review action. Code checks the numbers. A human corrects the documents and makes the final decision.</p>
+<span class="badge">Qwen3 4B via Ollama · Runs on a Mac · Synthetic data</span>
+<section class="watch" aria-label="Local AI demonstration video">
+<video controls playsinline preload="metadata" poster="./media/local-ai-poster.jpg" aria-label="Captioned walkthrough of the local Qwen3 application">
+<source src="./media/local-qwen3-walkthrough.mp4" type="video/mp4">
+<track kind="captions" src="./media/local-ai-en.vtt" srclang="en" label="English" default>
+Your browser cannot play this video. <a href="./media/local-qwen3-walkthrough.mp4">Download the walkthrough</a>.
+</video>
+<p class="note">Captioned video assembled from screenshots of an actual local run on 10 October 2026. Pauses are edited out. This is recorded evidence, not an AI service running on this website. There is no audio.</p>
+</section>
+<div class="actions"><a class="button primary" href="./">Try the interactive scripted demo</a><a class="button" href="./media/local-qwen3-walkthrough.mp4" download>Download video</a></div>
+<h2>What the demonstration shows</h2>
+<ol>
+<li><strong>Investigate.</strong> INV-002 bills 108 THB per unit against an order price of 100 THB. Local Qwen3 selects read-only tools to retrieve the invoice, matching results, policy and connected evidence.</li>
+<li><strong>Correct.</strong> The reviewer applies a fictional corrected invoice at 100 THB per unit and records the evidence reference and reason.</li>
+<li><strong>Recheck.</strong> Deterministic matching rules validate the updated documents. Saving a correction alone cannot unlock approval.</li>
+<li><strong>Decide.</strong> The reviewer records a local approval after the checks pass. The case history records the changes. No payment or SAP posting occurs.</li>
+</ol>
+<h2>Two ways to view the project</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">Capability</th><th scope="col">Local AI application shown above</th><th scope="col">Public interactive demo</th></tr></thead><tbody>
+<tr><th scope="row">Investigator</th><td>Qwen3 4B via Ollama selects evidence tools.</td><td>A fixed tool sequence and template explanation. No live AI.</td></tr>
+<tr><th scope="row">Matching and approval</th><td>Rules check the documents. Human review is required.</td><td>Rules check the documents. Human review is required.</td></tr>
+<tr><th scope="row">Access</th><td>The recording is public. Running the application requires the local setup.</td><td>Open and interact immediately, without installation.</td></tr>
+<tr><th scope="row">Saved state</th><td>SQLite on the local Mac.</td><td>Storage in the visitor's browser. Separate from the local app.</td></tr>
+</tbody></table></div>
+<details><summary>Evidence and limitations</summary><p>The demonstration uses an isolated practice database. The model's proposed action and cited record IDs are validated in code; its narrative still requires human review. The prototype has no SAP connection and does not send messages, post invoices or make payments. Built with AI coding assistance. Fixture tests are not production accuracy measurements.</p><p><a href="./media/local-ai-evidence.json">Inspect the synthetic run evidence</a> · <a href="./README.md">Read project documentation</a></p></details>
+<footer>Peerawich Changkamol · Independent portfolio prototype · Fictional suppliers, invoices and policy</footer>
+</main></body></html>
