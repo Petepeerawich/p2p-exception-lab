@@ -1,6 +1,7 @@
 import {Demo,check} from './core.js';
 const $=id=>document.getElementById(id), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const KEY='p2p-lab-v1', labels={needs_review:'Needs review',ready_for_review:'Matched',on_hold:'On hold',approved:'Approved',rejected:'Rejected',needs_recheck:'Needs recheck'};
+let mode='guided';
 let seed, demo, selected='INV-009', view='investigation', tour='INV-009', graphFocus=null, storageError=false;
 function notify(message,error=false){$('notice').textContent=message;$('notice').className=error?'error':'';}
 try {
@@ -19,8 +20,26 @@ function badge(c){return `<span class="badge ${c.result.match&&!c.dirty?'good':'
 function render(){
   const values=Object.values(demo.cases), g=demo.graph();
   $('metrics').innerHTML=[['Invoices',values.length,'Synthetic source records'],['Unresolved',values.filter(c=>!c.result.match||c.dirty).length,'Exceptions or pending recheck'],['Matched',values.filter(c=>c.result.match&&!c.dirty).length,'Pass current matching rules'],['Graph entities',g.nodes.length,`${g.edges.length} typed relationships`]].map(([title,n,sub])=>`<div class="metric">${title}<b>${n}</b><span>${sub}</span></div>`).join('');
-  renderQueue(); renderCase();
+  renderQueue(); renderCase(); renderPlayground();
 }
+function renderPlayground(){
+  $('explorer').hidden=mode!=='explore'; $('playground').hidden=mode!=='guided';
+  for(const name of ['guided','explore']){const b=$(name+'-mode');b.classList.toggle('primary',mode===name);b.setAttribute('aria-pressed',String(mode===name));}
+  const id='INV-009', i=demo.data.invoices.find(x=>x.id===id), c=demo.cases[id];
+  const events=demo.events.filter(e=>e.id===id), investigated=events.some(e=>['investigate','correct','recheck'].includes(e.type));
+  const finished=['approved','rejected'].includes(c.status);
+  const step=finished?5:c.dirty?3:c.result.match?4:investigated?2:1;
+  const received=demo.data.goods_receipts.filter(r=>r.po_id===i.po_id).reduce((sum,r)=>sum+r.quantity,0);
+  const steps=['Spot the problem','Fix the documents','Check your fix','Make the call'];
+  let body='';
+  if(step===1)body=`<p class="eyebrow">STEP 1 OF 4 · SPOT THE PROBLEM</p><h2>Something doesn’t add up.</h2><p>The supplier wants to bill 10 units at 115 THB each. Compare that with what was ordered and delivered.</p><button id="play-investigate" class="primary big-action">Find the two problems →</button><div class="document-cards"><div><span>What we ordered</span><h3>Purchase order</h3><b>10 units</b><p>100 THB each</p></div><div class="problem"><span>What we were billed</span><h3>Supplier invoice</h3><b>10 units</b><p>115 THB each <span class="mini-tag">Price too high</span></p></div><div class="problem"><span>What arrived</span><h3>Delivery receipt</h3><b>5 units</b><p>5 still missing <span class="mini-tag">Delivery short</span></p></div></div><p class="lesson">A three-way match compares the order, invoice and delivery receipt. Here, both price and delivered quantity need attention.</p><p class="help">Runs the demo’s scripted evidence check. No live AI.</p>`;
+  if(step===2)body=`<p class="eyebrow">STEP 2 OF 4 · FIX THE DOCUMENTS</p><h2>Good catch. Let’s put it right.</h2><p>For this fictional exercise, the supplier has sent a corrected invoice and the remaining goods have arrived. Apply those prepared documents below.</p><div class="prepared"><strong>Your fictional evidence pack</strong><p>Corrected invoice · 10 units at 100 THB each<br>Verified delivery · 10 units received in total</p><span class="help">DEMO-CORRECTED-INVOICE-009 / DEMO-DELIVERY-009</span></div><form id="play-correction"><div class="form-grid"><div><label for="play-price">Invoice price per unit · THB</label><input id="play-price" name="price" inputmode="decimal" value="100.00" required></div><div><label for="play-quantity">Units on the invoice</label><input id="play-quantity" name="quantity" type="number" min="1" max="1000000" value="10" required></div><div><label for="play-receipt">Newly received units</label><input id="play-receipt" name="receiptQty" type="number" min="0" max="1000000" value="${Math.max(0,10-received)}" required></div></div><p class="help">The values are ready to use. You can also change them to see which checks still fail. The evidence reference and correction reason are included in the saved history.</p><button type="submit" class="primary big-action">Apply the corrected documents →</button></form><details ${events.some(e=>e.type==='recheck')?'open':''}><summary>See the current problems</summary>${c.result.findings.map(f=>`<p>${esc(f.message)}</p>`).join('')}</details>`;
+  if(step===3)body=`<p class="eyebrow">STEP 3 OF 4 · CHECK YOUR FIX</p><h2>Documents updated. Does everything match?</h2><p>A correction alone doesn’t unlock approval. Run the checks again against your updated documents.</p><div class="document-cards"><div><span>Current invoice</span><b>${i.quantity} units</b><p>${esc(i.unit_price)} THB each</p></div><div><span>Total delivered</span><b>${received} units</b><p>Across all receipts for this order</p></div><div><span>Purchase order</span><b>10 units</b><p>100 THB each</p></div></div><button id="play-recheck" class="primary big-action">Check my fix →</button><p class="help">Approval stays locked until the checks pass.</p>`;
+  if(step===4)body=`<p class="eyebrow">STEP 4 OF 4 · MAKE THE CALL</p><h2>It matches. You make the decision.</h2><div class="success-strip">✓ Price, quantity and receipt checks passed.</div><p>You’ve checked the evidence and corrected the documents. Record your review to finish the challenge.</p><label for="play-note">Your review note</label><textarea id="play-note" maxlength="1000">Verified the fictional corrected invoice and delivery. All matching checks passed.</textarea><button id="play-approve" class="primary big-action">Approve this demo invoice ✓</button><p class="help">This records a decision in your browser. It does not post an invoice or make a payment.</p>`;
+  if(step===5)body=`<div class="completion"><div class="completion-icon" aria-hidden="true">${c.status==='approved'?'✓':'■'}</div><p class="eyebrow">CHALLENGE COMPLETE</p><h2>${c.status==='approved'?'Invoice rescued. Nicely done!':'Case closed with a rejection.'}</h2><p>${c.status==='approved'?'You spotted the mismatch, corrected the documents and checked the result before approval.':'You recorded a final rejection in the explorer. This case is now locked.'}</p><div class="row"><button id="play-history" class="primary">See my decision trail</button><button id="play-duplicate">Try the duplicate case →</button><button id="play-restart">Play again</button></div></div>`;
+  $('playground').innerHTML=`<div class="challenge-top"><span class="eyebrow">YOUR FIRST MISSION · INV-009</span><span>${Math.min(step-1,4)} of 4 steps complete</span></div><ol class="step-track" aria-label="Challenge progress">${steps.map((title,k)=>`<li class="${step>k+1?'complete':step===k+1?'current':''}" ${step===k+1?'aria-current="step"':''}><span>${step>k+1?'✓':k+1}</span>${title}</li>`).join('')}</ol><div class="play-card" tabindex="-1">${body}</div><p class="help play-caption">Synthetic practice data · Changes stay in this browser · Explore all cases whenever you like</p>`;
+}
+function playAction(type,payload={}){selected='INV-009';if(commit(type,payload)){$('playground').querySelector('.play-card').focus();if(type==='recheck'&&!demo.cases[selected].result.match)notify('Not quite yet. Review the remaining problems and try another correction.',true);}}
 function supplier(id){return demo.data.suppliers.find(x=>x.id===id)?.name||id;}
 function renderQueue(){
   const search=$('search').value.toLowerCase(), filter=$('filter').value;
@@ -30,11 +49,11 @@ function renderQueue(){
 function guide(i,c){
   if(tour!==i.id)return '';
   let text;
-  if(['approved','rejected'].includes(c.status))text='จบบทเรียนแล้ว เปิด Case history เพื่อดูหลักฐานการตัดสินใจ หรือเลือกบทเรียนใหม่ด้านบน';
-  else if(c.dirty)text='บันทึกเอกสารแล้ว กด Recheck documents เพื่อตรวจข้อมูลใหม่ การแก้เอกสารยังไม่ทำให้อนุมัติได้ทันที';
-  else if(i.id==='INV-009'&&!c.result.match)text=c.status==='on_hold'?'เปิด Correct documents เปลี่ยน Unit price เป็น 100 และ Additional received units เป็น 5 ใส่หลักฐานจำลองและเหตุผล แล้วบันทึก การเพิ่มใบรับสินค้านี้สมมติว่าได้รับสินค้าจริงแล้ว':'เคสนี้ราคา 115 แต่ PO ราคา 100 และรับสินค้าเพียง 5 จาก 10 หน่วย กด Investigate invoice แล้วใส่หมายเหตุและเลือก Hold for review ก่อนแก้เอกสาร';
-  else if(i.id==='INV-013')text='เปิด Source records เพื่อเทียบ INV-013 กับ INV-012 ทั้งสองใช้เลขอ้างอิงเดียวกันของผู้ขายรายเดียวกัน ตรวจหลักฐานแล้วใส่หมายเหตุ เลือก Reject case เพื่อสาธิตการปฏิเสธรายการซ้ำ หรือ Hold for review หากยังไม่แน่ใจ';
-  else text='ผลตรวจเป็น Matched แล้ว ตรวจ Source records จากนั้นใส่ Decision note และกด Approve matched case การอนุมัตินี้บันทึกเฉพาะในเดโม';
+  if(['approved','rejected'].includes(c.status))text='Case complete. Open Case history to see your decision trail, or choose another case above.';
+  else if(c.dirty)text='Documents saved. Select Recheck documents to validate your changes before approval.';
+  else if(i.id==='INV-009'&&!c.result.match)text=c.status==='on_hold'?'Open Correct documents. Set the price to 100 and add 5 received units. Include a fictional evidence reference and reason. This exercise assumes the remaining goods have arrived.':'The invoice price is 115, but the order price is 100. Only 5 of 10 units have arrived. Investigate the invoice, then record a hold while you verify the documents.';
+  else if(i.id==='INV-013')text='Compare INV-013 with INV-012 in Source records. Both use the same reference from the same supplier. Review the evidence, add a note and reject the duplicate, or hold it if you are unsure.';
+  else text='The checks passed. Review Source records, add a decision note and approve the matched case. This records a demo decision only.';
   return `<div class="guide"><div class="steps">REVIEW → CORRECT → RECHECK → DECIDE</div><strong>Guided case · ${i.id}</strong><p>${text}</p></div>`;
 }
 function renderCase(){
@@ -69,7 +88,14 @@ function review(c){const locked=['approved','rejected'].includes(c.status);retur
 $('search').addEventListener('input',renderQueue);$('filter').addEventListener('change',renderQueue);
 document.addEventListener('click',event=>{
   const button=event.target.closest('button,[data-node]');if(!button||button.disabled||!demo)return;
-  if(button.dataset.case||button.dataset.open||button.dataset.tour){selected=button.dataset.case||button.dataset.open||button.dataset.tour;view='investigation';graphFocus=null;if(button.dataset.tour){tour=selected;$('search').value='';$('filter').value='all';}render();}
+  if(button.id==='guided-mode'){mode='guided';render();}
+  else if(button.id==='explore-mode'){mode='explore';render();}
+  else if(button.id==='play-investigate')playAction('investigate');
+  else if(button.id==='play-recheck')playAction('recheck');
+  else if(button.id==='play-approve')playAction('review',{decision:'approve',note:$('play-note').value});
+  else if(button.id==='play-history'||button.id==='play-duplicate'){mode='explore';selected=button.id==='play-history'?'INV-009':'INV-013';tour=selected;view=button.id==='play-history'?'history':'sources';graphFocus=null;render();$('case').scrollIntoView({block:'start'});}
+  else if(button.id==='play-restart')$('reset').click();
+  else if(button.dataset.case||button.dataset.open||button.dataset.tour){selected=button.dataset.case||button.dataset.open||button.dataset.tour;view='investigation';graphFocus=null;if(button.dataset.tour){tour=selected;$('search').value='';$('filter').value='all';}render();}
   else if(button.dataset.view){view=button.dataset.view;renderCase();}
   else if(button.dataset.node){graphFocus=button.dataset.node;renderCase();}
   else if(button.dataset.decision)commit('review',{decision:button.dataset.decision,note:$('decision-note').value});
@@ -78,5 +104,5 @@ document.addEventListener('click',event=>{
   else if(button.id==='export'){const text=JSON.stringify({disclosure:seed.disclosure,actions:demo.actions,events:demo.events,cases:demo.cases},null,2),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),dialog=document.createElement('dialog');dialog.innerHTML=`<h2>Export case history</h2><p>Download JSON, or copy the text below if your browser blocks downloads.</p><label for="export-text">History JSON</label><textarea id="export-text" readonly style="min-height:250px">${esc(text)}</textarea><div class="row" style="margin-top:16px"><a href="${url}" download="p2p-demo-history.json">Download JSON</a><form method="dialog"><button>Close export</button></form></div>`;document.body.append(dialog);dialog.addEventListener('close',()=>{URL.revokeObjectURL(url);dialog.remove();},{once:true});dialog.showModal();}
   else if(button.id==='reset'&&confirm('Reset this browser demo? This clears your corrections and decisions. Export history first if you want to keep it.')){try{localStorage.removeItem(KEY);storageError=false;}catch{storageError=true;}demo=new Demo(seed);selected='INV-009';view='investigation';graphFocus=null;tour=selected;render();notify(storageError?'Reset for this session. Browser storage is unavailable.':'Demo reset. Original synthetic records restored.',storageError);}
 });
-document.addEventListener('submit',event=>{if(event.target.id==='correction-form'){event.preventDefault();commit('correct',Object.fromEntries(new FormData(event.target)));}});
+document.addEventListener('submit',event=>{if(event.target.id==='play-correction'){event.preventDefault();playAction('correct',{...Object.fromEntries(new FormData(event.target)),evidence:'DEMO-CORRECTED-INVOICE-009 / DEMO-DELIVERY-009',note:'Applied the prepared fictional corrected invoice and verified delivery from the guided exercise.'});}else if(event.target.id==='correction-form'){event.preventDefault();commit('correct',Object.fromEntries(new FormData(event.target)));}});
 document.addEventListener('keydown',event=>{if(event.target.matches('g[data-node]')&&['Enter',' '].includes(event.key)){event.preventDefault();graphFocus=event.target.dataset.node;renderCase();}});

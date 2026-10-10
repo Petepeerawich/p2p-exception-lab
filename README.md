@@ -4,17 +4,18 @@ An interactive procure-to-pay portfolio demo. Explore invoice exceptions, follow
 
 All records and policies are fictional. There is no SAP connection. The investigation is scripted, not a live AI agent. The demo never posts an invoice, makes a payment or sends a message.
 
-## Try the workflow
+## Try the four-step challenge
 
-1. Choose **02 · Resolve an exception** to open INV-009.
-2. Investigate the price and receipt exceptions. Enter a decision note and choose **Hold for review**.
-3. Open **Correct documents**. Use price `100`, quantity `10`, and additional received units `5`.
-4. Enter fictional evidence `DEMO-CORRECTED-INVOICE-009 / DEMO-DELIVERY-009` and a reason for the correction. This lesson assumes a corrected supplier invoice and verified delivery of the remaining five units. Do not invent receipts in a real process.
-5. Save the correction. Approval stays blocked until **Recheck documents** passes.
-6. Review the before/after source records. Add a decision note and choose **Approve matched case**.
-7. Open **Case history** or **Export history** to inspect the sequence.
+The opening screen starts with INV-009 and one clear next action.
 
-The other guided cases demonstrate a clean invoice and a duplicate supplier reference. Reset demo clears only this site's browser history and restores the original fixtures.
+1. **Spot the problem.** Compare the order, invoice and delivery cards. Run the scripted check to find the high price and missing delivery.
+2. **Fix the documents.** Apply a prepared fictional invoice at 100 THB per unit and the delivery of the remaining five units. The fields are editable so visitors can try a partial fix.
+3. **Check your fix.** Run the matching rules again. Any remaining exception returns the visitor to the correction step with the current findings.
+4. **Make the call.** Review or edit the prepared decision note and approve the demo invoice. A completion screen links to the decision trail and duplicate case.
+
+The progress indicator follows actual case events. Reloading restores saved progress. Play again asks before resetting browser decisions and corrections. Visitors can switch to **Explore all cases** at any time for the full queue, source documents, evidence graph and history.
+
+All prepared evidence is fictional. A real reviewer must verify corrected invoices and delivery records before changing quantities or approving an invoice. Demo approval never posts an invoice or makes a payment.
 
 ## Implementation
 
@@ -51,3 +52,7 @@ This version assumes one material per order. It does not handle tax, discounts, 
 ## Portfolio positioning
 
 Describe this as an independent synthetic-data project. Demonstrated skills include deterministic matching automation, typed knowledge-graph evidence retrieval, human review, correction history and static deployment. Do not describe it as production SAP experience or a deployed live AI agent.
+
+## Local AI edition
+
+The resume also describes a separate Python and SQLite application with Qwen3 4B through Ollama. That local application uses model-selected read-only evidence tools and human-controlled corrections and approval. This public GitHub Pages demo remains scripted and requires no model or API key.
